@@ -17,7 +17,7 @@ def GetPrediction():
     with graph.as_default():
         request_data = request.get_json()
         input_data = {
-            "Name": [request_data["Name"]],
+            "Name": 1,
             "PatientAge": [request_data["PatientAge"]],
             "TimesPerDay": [request_data["TimesPerDay"]],
             "DiagnosticCode": [request_data["DiagnosticCode"]],
