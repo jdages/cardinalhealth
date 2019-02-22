@@ -1,13 +1,13 @@
 {
 	"Name": "w",
-    "PatientAge": 1,
-    "TimesPerDay": 2,
-    "DiagnosticCode": 3,
-    "CitySize": 4,
-    "PillCost": 5,
-    "NumberOfProducts": 6, 
-    "KnownDoctorsVisits": 7,
-    "Income": 8,
+    "PatientAge": 55,
+    "TimesPerDay": 3,
+    "DiagnosticCode": 334,
+    "CitySize": 400000,
+    "PillCost": 250,
+    "NumberOfProducts": 3, 
+    "KnownDoctorsVisits": 2,
+    "Income": 20000,
     "DaysSinceLastViolation": 9,
     "Adhered": ""
 }
