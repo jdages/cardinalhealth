@@ -16,7 +16,7 @@ class Predictor:
         # import data
         self.training_data_url = "https://storage.googleapis.com/cardinalmldata/data.csv"
         self.testing_data_url = "https://storage.googleapis.com/cardinalmldata/datatest.csv"
-        self.epochs = 5
+        self.epochs = 2
         self.batch_size = 1
         self.verbose = 1
 
