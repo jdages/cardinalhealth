@@ -12,11 +12,13 @@ from sklearn.externals import joblib
 from keras.models import load_model
 
 class Predictor:
-
     def __init__(self):
         # import data
         self.training_data_url = "https://storage.googleapis.com/cardinalmldata/data.csv"
         self.testing_data_url = "https://storage.googleapis.com/cardinalmldata/datatest.csv"
+        self.epochs = 5
+        self.batch_size = 1
+        self.verbose = 1
 
     def _get_training_data(self):
         # training data
@@ -53,7 +55,12 @@ class Predictor:
         # evaluate model with standardized dataset
         estimators = []
         estimators.append(('standardize', StandardScaler()))
-        estimators.append(('estimator', KerasClassifier(build_fn=self._create_baseline_model, epochs=5, batch_size=5, verbose=1)))
+        estimators.append(('estimator', KerasClassifier(
+                build_fn = self._create_baseline_model, 
+                epochs = self.epochs, 
+                batch_size = self.batch_size, 
+                verbose = self.verbose
+            )))
         pipeline = Pipeline(estimators)
         pipeline.fit(X_train, encoded_Y_train)
         self._save_model(pipeline)        

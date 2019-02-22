@@ -3,30 +3,36 @@ from flask import request
 import json
 import numpy
 import pandas as pd
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.models import load_model
-from keras.wrappers.scikit_learn import KerasClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import StratifiedKFold
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from sklearn.externals import joblib
-
-# data sources
-training_data_url = "https://storage.googleapis.com/cardinalmldata/data.csv"
-testing_data_url = "https://storage.googleapis.com/cardinalmldata/datatest.csv"
+from Predictor import Predictor
 
 app = Flask(__name__)
 
-@app.route("/predict")
-def GetPrediction(date): 
-    return "GetPrediction"          
+@app.route("/predict", methods = ['POST'])
+def GetPrediction(): 
+    request_data = request.get_json()
+    input_data = {
+        "Name": [request_data["Name"]],
+        "PatientAge": [request_data["PatientAge"]],
+        "TimesPerDay": [request_data["TimesPerDay"]],
+        "DiagnosticCode": [request_data["DiagnosticCode"]],
+        "CitySize": [request_data["CitySize"]],
+        "PillCost": [request_data["PillCost"]],
+        "NumberOfProducts": [request_data["NumberOfProducts"]], 
+        "KnownDoctorsVisits": [request_data["KnownDoctorsVisits"]],
+        "Income": [request_data["Income"]],
+        "DaysSinceLastViolation": [request_data["DaysSinceLastViolation"]],
+        "Adhered": [request_data["Adhered"]]
+    }
+    input_data_df = pd.DataFrame(data=input_data)    
+    predictor = Predictor()
+    prediction = predictor.predict(input_data_df)
+    return '{ "Adhered": ' + str(prediction[0][0]) + '}'
 
 @app.route("/train")
 def TrainModel():
-    return "TrainModel"
+    predictor = Predictor()
+    predictor.train()
+    return "Training Completed."
 
 @app.route("/")
 def HeartBeat():

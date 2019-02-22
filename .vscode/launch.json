@@ -38,7 +38,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "web-app.py"
+                "FLASK_APP": "App.py"
             },
             "args": [
                 "run",
