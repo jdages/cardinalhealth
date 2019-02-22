@@ -1,0 +1,13 @@
+{
+	"Name": "w",
+    "PatientAge": 1,
+    "TimesPerDay": 2,
+    "DiagnosticCode": 3,
+    "CitySize": 4,
+    "PillCost": 5,
+    "NumberOfProducts": 6, 
+    "KnownDoctorsVisits": 7,
+    "Income": 8,
+    "DaysSinceLastViolation": 9,
+    "Adhered": ""
+}
